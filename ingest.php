@@ -25,9 +25,9 @@
  *  
  *  for each "data" object in the accepted request, a "postback" object will be
  *  pushed to a local redis database with the endpoint and data information hash form:
- *  KEY           VALUES
+ *  KEY           FIELDS      VALUES
  *  postback:###  "endpoint": {"method":"GET","url":"http:\/\/example-server.com\/data?key={key}&value={value}&foo={bar}"}
- *                "data": {"key":"Azureus","value":"Dendrobates"}
+ *                "data":     {"key":"Azureus","value":"Dendrobates"}
  */
 
 require 'Predis/Autoloader.php';
@@ -38,7 +38,7 @@ Predis\Autoloader::register();
 //tries to decode JSON from the raw post data. If it can not, echos an error
 if($content = json_decode(file_get_contents('php://input'), true))
 {
-	//var_dump($content);
+	var_dump($content);
 	
 	//varifies that the provided endpoint url is in valid form. Else echos an error
 	if(filter_var($content['endpoint']['url'], FILTER_VALIDATE_URL))
@@ -57,12 +57,20 @@ if($content = json_decode(file_get_contents('php://input'), true))
 					$id = $redis->incr("postback_tail");
 					//postback keys are in the form "postback:####"
 					$key = 'postback:'.$id;
-					$redis->hset($key, 'endpoint', json_encode($content['endpoint']));
-					$redis->hset($key, 'data', json_encode($data));
-					
+					//$redis->hmset($key, 'endpoint', json_encode($content['endpoint']), 'data', json_encode($data));
+					$redis->hset($key, 'endpoint', json_encode($content['endpoint'] + array('data' => $data)));
+					/*
 					echo 'key: '.$key.'<br>';
 					echo '"endpoint": '.json_encode($content['endpoint']).'<br>';
 					echo '"data": '.json_encode($data).'<br><br>';
+					var_dump($content['endpoint']);
+					echo '<br><br>';
+					var_dump($data);
+					echo '<br><br>';
+					$temp = $content['endpoint'] + array('data' => $data);
+					var_dump($temp);
+					echo '<br><br>';
+					*/
 				}
 			}
 			catch (Exception $e)
