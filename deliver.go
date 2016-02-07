@@ -1,61 +1,58 @@
 package main
 
 import (
-		"fmt"
-		"log"
-		"os"
-		"io"
-		"bytes"
-		"strings"
-		"regexp"
-		"flag"
-		"net/http"
-		"io/ioutil"
-		"encoding/json"
-		"github.com/garyburd/redigo/redis"
+	"fmt"
+	"log"
+	"os"
+	"io"
+	"bytes"
+	"strings"
+	"regexp"
+	"flag"
+	"net/http"
+	"io/ioutil"
+	"encoding/json"
+	"github.com/garyburd/redigo/redis"
 )
 
 var (
 	home   = os.Getenv("HOME")
-    user   = os.Getenv("USER")
-    gopath = os.Getenv("GOPATH")
+	user   = os.Getenv("USER")
+	gopath = os.Getenv("GOPATH")
 	
 	curlyBracketMatch = regexp.MustCompile("{.*?}")
 	
 	Trace   *log.Logger
-    Info    *log.Logger
-    Warning *log.Logger
-    Error   *log.Logger
+	Info    *log.Logger
+	Warning *log.Logger
+	Error   *log.Logger
 )
 
 type PostbackObject struct {
-    Method string              `json:"method"`
-    Url    string              `json:"url"`
+	Method string              `json:"method"`
+	Url    string              `json:"url"`
 	Data   map[string]string   `json:"data"`
 }
 
 func Init() {
 	if user == "" {
-        log.Fatalln("$USER not set")
-    }
-    if home == "" {
-        home = "/home/" + user
-    }
-    if gopath == "" {
-        gopath = home + "/go"
-    }
-    // gopath may be overridden by --gopath flag on command line.
-    flag.StringVar(&gopath, "gopath", gopath, "override default GOPATH")
+		log.Fatalln("$USER not set")
+	}
+	if home == "" {
+		home = "/home/" + user
+	}
+	if gopath == "" {
+		gopath = home + "/go"
+	}
+	// gopath may be overridden by --gopath flag on command line.
+	flag.StringVar(&gopath, "gopath", gopath, "override default GOPATH")
 }
 
-func InitLoggers(traceHandle io.Writer,
-				 infoHandle io.Writer,
-				 warningHandle io.Writer,
-				 errorHandle io.Writer) {
+func InitLoggers(traceHandle io.Writer, infoHandle io.Writer, warningHandle io.Writer, errorHandle io.Writer) {
 	Trace =   log.New(traceHandle,   "TRACE: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
-    Info =    log.New(infoHandle,    "INFO: ",    log.Ldate|log.Lmicroseconds|log.Llongfile)
-    Warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
-    Error =   log.New(errorHandle,   "ERROR: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
+	Info =    log.New(infoHandle,    "INFO: ",    log.Ldate|log.Lmicroseconds|log.Llongfile)
+	Warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
+	Error =   log.New(errorHandle,   "ERROR: ",   log.Ldate|log.Lmicroseconds|log.Llongfile)
 }
 
 func replaceUrlWithData(postback *PostbackObject) {
