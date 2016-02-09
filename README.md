@@ -23,29 +23,29 @@ How to Install (Steps I followed for Linux)
 - Install Apache Server
 	- apt-get install apache2-bin
 - Install PHP
-sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+	- sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
 - Install Go
-apt-get install gccgo-go
+	- apt-get install gccgo-go
 - Install Make
-apt-get install make
+	- apt-get install make
 - Install Git
-apt-get install git
+	- apt-get install git
 - Install Predis library using Pear
-apt-get install php-pear
-pear channel-discover pear.nrk.io
-pear install nrk/Predis
+	- apt-get install php-pear
+	- pear channel-discover pear.nrk.io
+	- pear install nrk/Predis
 - Set Up Go's environment path
-export GOPATH=$HOME/go
+	- export GOPATH=$HOME/go
 - Install Redigo library
-go get github.com/garyburd/redigo/redis
+	- go get github.com/garyburd/redigo/redis
 - Install and setup a local Redis server
-Followed [these steps](http://redis.io/topics/quickstart) including under "installing Redis more properly".
+	- Follow [these steps](http://redis.io/topics/quickstart) including under "installing Redis more properly".
 
 - Place "deliver.go" in the default directory according to your GOPATH
-I placed mine at: $GOPATH/src/github.com/23caterpie/postback_delivery
+	- I placed mine at: $GOPATH/src/github.com/23caterpie/postback_delivery
 
 - Place "ingest.php", "echoPost.php", and the "i" folder in your default server directory
-I placed mine at: /var/www/html
+	- I placed mine at: /var/www/html
 
 
 How to Run
