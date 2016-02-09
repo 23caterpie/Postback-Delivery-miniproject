@@ -27,22 +27,22 @@
  *  appended to the "request" list in a local redis database as such:
  *  KEY      VALUES
  *  request  {  
- *			    "method":"GET",
- *			    "url":"http://sample-domain-endpoint.com/data?key={key}&value={value}&foo={bar}"
- *			    "data":
- *			     {  
- *			       "key":"Azureus",
- *			       "value":"Dendrobates"
- *			     }
+ *              "method":"GET",
+ *              "url":"http://sample-domain-endpoint.com/data?key={key}&value={value}&foo={bar}"
+ *              "data":
+ *              {  
+ *                 "key":"Azureus",
+ *                 "value":"Dendrobates"
+ *              }
  *           },
  *           {  
- *			    "method":"GET",
- *			    "url":"http://sample-domain-endpoint.com/data?key={key}&value={value}&foo={bar}"
- *			    "data":
- *			     {  
- *			       "key":"Phyllobates",
+ *              "method":"GET",
+ *              "url":"http://sample-domain-endpoint.com/data?key={key}&value={value}&foo={bar}"
+ *              "data":
+ *              {  
+ *                 "key":"Phyllobates",
  *                 "value":"Terribilis"
- *			     }
+ *              }
  *           }
  */
 
@@ -51,9 +51,7 @@ Predis\Autoloader::register();
 
 //tries to decode JSON from the raw post data. If it can not, echos an error
 if($content = json_decode(file_get_contents('php://input'), true))
-{
-	//var_dump($content);
-	
+{	
 	//varifies that the provided endpoint url is in valid form. Else echos an error
 	if(filter_var($content['endpoint']['url'], FILTER_VALIDATE_URL))
 	{
