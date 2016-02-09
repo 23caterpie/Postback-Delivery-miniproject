@@ -49,8 +49,6 @@
 require 'Predis/Autoloader.php';
 Predis\Autoloader::register();
 
-//echo $HTTP_RAW_POST_DATA."<br>";
-
 //tries to decode JSON from the raw post data. If it can not, echos an error
 if($content = json_decode(file_get_contents('php://input'), true))
 {
@@ -70,17 +68,6 @@ if($content = json_decode(file_get_contents('php://input'), true))
 				foreach($content['data'] as $data)
 				{
 					$redis->rpush('request', json_encode($content['endpoint'] + array('data' => $data)));
-					/*
-					echo '"endpoint": '.json_encode($content['endpoint']).'<br>';
-					echo '"data": '.json_encode($data).'<br><br>';
-					var_dump($content['endpoint']);
-					echo '<br><br>';
-					var_dump($data);
-					echo '<br><br>';
-					$temp = $content['endpoint'] + array('data' => $data);
-					var_dump($temp);
-					echo '<br><br>';
-					*/
 				}
 				echo "Success!<br>";
 			}
