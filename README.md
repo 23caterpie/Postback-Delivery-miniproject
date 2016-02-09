@@ -1,4 +1,4 @@
-Minproject :: "Postback Delivery"
+Miniproject :: "Postback Delivery"
 =================================
 
 This webapp serves as a small scale simulation for data sychronization.
@@ -17,11 +17,11 @@ Libaries
 - [Redigo](https://github.com/garyburd/redigo/)
 - [Predis](https://github.com/nrk/predis)
 
-How to Install (Steps I follwed for Linux)
+How to Install (Steps I followed for Linux)
 --------------
 
 - Install Apache Server
-apt-get install apache2-bin
+	- apt-get install apache2-bin
 - Install PHP
 sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
 - Install Go
