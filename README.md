@@ -21,41 +21,41 @@ How to Install (Steps I use for Linux)
 --------------
 
 - Install Apache Server
-	- apt-get install apache2-bin
+	- <code>apt-get install apache2-bin</code>
 - Install PHP
-	- sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+	- <code>sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt</code>
 - Install Go
-	- apt-get install gccgo-go
+	- <code>apt-get install gccgo-go</code>
 - Install Make
-	- apt-get install make
+	- <code>apt-get install make</code>
 - Install Git
-	- apt-get install git
+	- <code>apt-get install git</code>
 - Install Predis library using Pear
-	- apt-get install php-pear
-	- pear channel-discover pear.nrk.io
-	- pear install nrk/Predis
+	- <code>apt-get install php-pear</code>
+	- <code>pear channel-discover pear.nrk.io</code>
+	- <code>pear install nrk/Predis</code>
 - Set Up Go's environment path
-	- export GOPATH=$HOME/go
+	- <code>export GOPATH=$HOME/go</code>
 - Install Redigo library
-	- go get github.com/garyburd/redigo/redis
+	- <code>go get github.com/garyburd/redigo/redis</code>
 - Install and setup a local Redis server
 	- Follow [these steps](http://redis.io/topics/quickstart) including under "installing Redis more properly".
 - Place "deliver.go" in the default directory according to your GOPATH
-	- I placed mine at: $GOPATH/src/github.com/23caterpie/postback_delivery
+	- I placed mine at: <code>$GOPATH/src/github.com/23caterpie/postback_delivery</code>
 - Place "ingest.php", "echoPost.php", and the "i" folder in your default server directory
-	- I placed mine at: /var/www/html
+	- I placed mine at: <code>/var/www/html</code>
 
 
 How to Run
 ----------
 
 - Start the Apache Server if it's not running already.
-	- sudo service apache2 start
-	- sudo service apache2 restart
+	- <code>sudo service apache2 start</code>
+	- <code>sudo service apache2 restart</code>
 - Redis should be running on local port 6379 already from the installation steps
 - Change directory to where "deliver.go" is located and run it.
-	- cd $GOPATH/src/github.com/23caterpie/postback_delivery
-	- go run deliver.go
+	- <code>cd $GOPATH/src/github.com/23caterpie/postback_delivery</code>
+	- <code>go run deliver.go</code>
 - The program will run until you close it with CTRL+C
 
 Testing
