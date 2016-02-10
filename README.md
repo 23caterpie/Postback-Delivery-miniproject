@@ -64,7 +64,7 @@ Testing
 - Once you have everything running, you can test the project by sending the server a POST request to ingest.php
 	- I used a Google Chrome App called [Postman](https://www.getpostman.com/)
 
--Send a POST request to http://\<server-ip\>/ingest.php or http://\<server-ip\>/i/ with a body of:
+- Send a POST request to http://\<server-ip\>/ingest.php or http://\<server-ip\>/i/ with a body of:
 <pre><code>
 {  
   "endpoint":{  
