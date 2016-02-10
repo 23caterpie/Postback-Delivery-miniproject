@@ -49,6 +49,8 @@
 require 'Predis/Autoloader.php';
 Predis\Autoloader::register();
 
+$REDIS_LIST_NAME = 'request';
+
 //tries to decode JSON from the raw post data. If it can not, echos an error
 if($content = json_decode(file_get_contents('php://input'), true))
 {	
@@ -65,7 +67,7 @@ if($content = json_decode(file_get_contents('php://input'), true))
 				//makes separate "postback" objects for each received "data" object
 				foreach($content['data'] as $data)
 				{
-					$redis->rpush('request', json_encode($content['endpoint'] + array('data' => $data)));
+					$redis->rpush($REDIS_LIST_NAME, json_encode($content['endpoint'] + array('data' => $data)));
 				}
 				echo "Success!<br>";
 			}
