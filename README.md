@@ -17,7 +17,7 @@ Libaries
 - [Redigo](https://github.com/garyburd/redigo/)
 - [Predis](https://github.com/nrk/predis)
 
-How to Install (Steps I followed for Linux)
+How to Install (Steps I use for Linux)
 --------------
 
 - Install Apache Server
