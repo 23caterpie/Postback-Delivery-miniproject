@@ -1,7 +1,7 @@
 Miniproject :: "Postback Delivery"
 =================================
 
-This webapp serves as a small scale simulation for data sychronization.
+This webapp serves as a small scale simulation for data synchronization.
 
 Software Stack
 --------------
