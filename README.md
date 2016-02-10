@@ -64,8 +64,8 @@ Testing
 - Once you have everything running, you can test the project by sending the server a POST request to ingest.php
 	- I used a Google Chrome App called [Postman](https://www.getpostman.com/)
 
--Send a POST request to http://\<server-ip\>/ingest.php or http://[server-ip]/i/ with a body of:
-
+-Send a POST request to http://\<server-ip\>/ingest.php or http://\<server-ip\>/i/ with a body of:
+<code>
 {  
   "endpoint":{  
     "method":"post",
@@ -82,7 +82,7 @@ Testing
     }
   ]
 }
-
+</code>
 - You should receive a response code of 200 with a body "Success!\<br\>".
 - Back on the server console, you should see log messages on standard output detailing delivering the data and receiving a response as well as the response code and body for both data objects.
 - Since we set the endpoint url to localhost/echoPost.php, the response body will be a copy of the POST data it sent.
